@@ -1,0 +1,8 @@
+{
+  "name": "TuneR",
+  "app_id": "3ec7243f",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
