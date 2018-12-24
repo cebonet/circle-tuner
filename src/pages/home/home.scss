@@ -1,12 +1,10 @@
-page-home {
-
-    
+page-home {   
     .khaki{
-        background-color: khaki;
+        background-color: ghostwhite;
     }
     #main-grid{
         position: relative;
-        top: 50%;
+        top: 40%;
         transform: translateY(-50%);
         padding:0;
     }
@@ -51,7 +49,8 @@ page-home {
         text-align: center;
         font-family: "Satisfy" ;
         white-space: nowrap;
-        
+        padding-top: 2em;
+
         @include media("<phone") {
             font-size: 0.5em;
         }
@@ -78,23 +77,30 @@ page-home {
         margin-top: -60px;
     }
     
-    #white-circle{
-        position: relative;
-        left: calc(50% - 1em);
+    #shadow-circle{
+        position: absolute;
+        left: calc(50% - 2em);
         content:'';
-        width: 2em;
-        height: 2em;
+        width: 4em;
+        height: 4em;
         background-color: rgb(225, 225, 225);
         border-radius: 50%;
+        z-index: 2;
+        clip-path: url(#circle);
+        -webkit-clip-path:url(#circle);
+   
     }
     #circle{
         position: relative;
-        left: calc(50% - 1em);
+        left: calc(50% - 2em);
         content:'';
-        width: 2em;
-        height: 2em;
-        background-color:black;
+        width: 4em;
+        height: 4em;
+        background-color:rgb(39, 174, 96);
         border-radius: 50%;
+        z-index: 1;
+        clip-path: circle(3em);
+
     }
     
 

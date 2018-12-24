@@ -11,7 +11,7 @@ import { Note } from "./note";
 })
 export class HomePage {
   circleCenterPos: number;
-  frequencyCache: Array<number> = new Array(15);;
+  frequencyCache: Array<number> = new Array(50);;
   amplitudeLimit: number = 0.2;
 
   constructor(public navCtrl: NavController, androidPermissions: AndroidPermissions,
@@ -19,7 +19,7 @@ export class HomePage {
 
     // Setup frequency cache with limit 5
     this.frequencyCache.push = function () {
-      if (this.length >= 15) {
+      if (this.length >= 50) {
         this.shift();
       }
       return Array.prototype.push.apply(this, arguments);
@@ -35,6 +35,8 @@ export class HomePage {
 
   // Use audio data here to modify view
   processAudioData(frequency, amplitude) {
+    this.frequencyCache.push(frequency.toFixed(2));
+
     /*
         this.MIDI = this.noteTools.getMIDI(this.frequency);
         this.previousFundamental = this.noteTools.getMIDIToFrequency(this.MIDI - 1);
@@ -59,7 +61,7 @@ export class HomePage {
     }
 
     if (document.getElementById("frequency") != null) {
-      document.getElementById("frequency").textContent = frequency.toFixed(0) + "Hz";
+      document.getElementById("frequency").textContent = frequency.toFixed(1) + "Hz";
     }
 
     if (document.getElementById("octave") != null) {
@@ -68,30 +70,30 @@ export class HomePage {
 
     if (document.getElementById("circle") != null) {
       var circle = document.getElementById("circle");
-
-      this.frequencyCache.push(frequency.toFixed(2));
       var offset = this.averageOffset();
 
       if(Math.abs(offset) > 50){
         offset = 0;
       }
-      var offsetAsPercent = 50 + offset;
-
-      circle.style.left = 'calc(' + offsetAsPercent + '% - 1em)';
-      if (Math.abs(offsetAsPercent - 50) < 0.5) {
-        circle.style.backgroundColor = 'black';
-      } else {
-        circle.style.backgroundColor = 'rgb(124, 12, 12)';
-      }
-      // console.log('center:' + offsetAsPercent);
-      // console.log('circlePos' + circlePos);
+      moveCircle(offset, circle);
     }
   }
   averageOffset = function () {
     let offsetCache = Object.assign([], this.frequencyCache);
     offsetCache = offsetCache.map( f => f - this.noteTools.getFundamentalFrequency(f).toFixed(2));
     let avg = (offsetCache.reduce((a,b) => a + b,0) / offsetCache.length);
-    console.log(avg);
     return avg;
+  }
+}
+
+function moveCircle(offset: number, circle: HTMLElement) {
+  var offsetAsPercent = 50 + offset;
+  circle.style.left = 'calc(' + offsetAsPercent + '% - 2em)';
+  if (Math.abs(offset) < 0.25) {
+    circle.style.backgroundColor = 'rgb(39, 174, 96)';
+  }else if(Math.abs(offset) > 0.25 && Math.abs(offset) < 3.50 ){
+    circle.style.backgroundColor = 'rgb(230, 126, 34)';
+  }else {
+    circle.style.backgroundColor = 'rgb(192, 57, 43)';
   }
 }
