@@ -1,3 +1,105 @@
 page-home {
 
+    
+    .khaki{
+        background-color: khaki;
+    }
+    #main-grid{
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        padding:0;
+    }
+    #note{
+        font-family: "Satisfy" ;
+        text-align: center;
+        white-space: nowrap;
+        
+        @include media("<phone") {
+            font-size: 6em;
+        }
+
+        @include media(">phone","<tablet") {
+            font-size: 10em;
+        }
+
+        @include media(">tablet") {
+            font-size: 15em;
+        } 
+    }
+    #frequency {
+        //font-family: "Dosis-Medium" ;
+        text-align: center;
+        font-family: "Satisfy" ;
+        white-space: nowrap;
+        
+        @include media("<phone") {
+            font-size: 1em;
+        }
+
+        @include media(">phone","<tablet") {
+            font-size: 2em;
+        }
+
+        @include media(">tablet") {
+            font-size: 3em;
+        } 
+    }
+
+    #octave {
+        //font-family: "Dosis-Medium" ;
+        text-align: center;
+        font-family: "Satisfy" ;
+        white-space: nowrap;
+        
+        @include media("<phone") {
+            font-size: 0.5em;
+        }
+
+        @include media(">phone","<tablet") {
+            font-size: 1em;
+        }
+
+        @include media(">tablet") {
+            font-size: 1.5em;
+        } 
+    }
+
+    #circle-fixed{
+        -webkit-transform: translate(-50%, 0); 
+        position: relative;
+        left: 50%;
+        content:'';
+        display:inline-block;
+        width: 3em;
+        height: 3em;
+        background-color: rgb(124, 12, 12);
+        border-radius: 50%;
+        margin-top: -60px;
+    }
+    
+    #white-circle{
+        position: relative;
+        left: calc(50% - 1em);
+        content:'';
+        width: 2em;
+        height: 2em;
+        background-color: rgb(225, 225, 225);
+        border-radius: 50%;
+    }
+    #circle{
+        position: relative;
+        left: calc(50% - 1em);
+        content:'';
+        width: 2em;
+        height: 2em;
+        background-color:black;
+        border-radius: 50%;
+    }
+    
+
+    #volume{
+        font-size: 3em;
+        text-align: center;
+    }
 }
