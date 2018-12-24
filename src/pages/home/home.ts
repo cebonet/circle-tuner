@@ -11,13 +11,20 @@ import { Note } from "./note";
 })
 export class HomePage {
   circleCenterPos: number;
-  circleOffsetArray: Array<number> = new Array(0);
-  prevFundemantalFreq: number = 0;
-  previousFrequency:number;
-  maxAmplitude:number=0;
+  frequencyCache: Array<number> = new Array(15);;
+  amplitudeLimit: number = 0.2;
 
   constructor(public navCtrl: NavController, androidPermissions: AndroidPermissions,
-    private audioRecorder: AudioRecorder,  private noteTools: Note) { }
+    private audioRecorder: AudioRecorder, private noteTools: Note) {
+
+    // Setup frequency cache with limit 5
+    this.frequencyCache.push = function () {
+      if (this.length >= 15) {
+        this.shift();
+      }
+      return Array.prototype.push.apply(this, arguments);
+    }
+  }
 
   ngOnInit() {
     this.audioRecorder.startRecording(this.processAudioData.bind(this));
@@ -27,24 +34,24 @@ export class HomePage {
   }
 
   // Use audio data here to modify view
-  processAudioData(frequency, amplitude){
-/*
-    this.MIDI = this.noteTools.getMIDI(this.frequency);
-    this.previousFundamental = this.noteTools.getMIDIToFrequency(this.MIDI - 1);
-    this.fundamental = this.noteTools.getMIDIToFrequency(this.MIDI);
-    this.nextFundamental = this.noteTools.getMIDIToFrequency(this.MIDI + 1);
-*/
-    if (amplitude > this.maxAmplitude) {
-        this.maxAmplitude = amplitude;
+  processAudioData(frequency, amplitude) {
+    /*
+        this.MIDI = this.noteTools.getMIDI(this.frequency);
+        this.previousFundamental = this.noteTools.getMIDIToFrequency(this.MIDI - 1);
+        this.fundamental = this.noteTools.getMIDIToFrequency(this.MIDI);
+        this.nextFundamental = this.noteTools.getMIDIToFrequency(this.MIDI + 1);
+    */
+    if (amplitude > this.amplitudeLimit) {
+      this.amplitudeLimit = amplitude;
     }
 
     // Skip if amplitude too low
-    if ((amplitude / this.maxAmplitude) < 0.20) {
+    if ((amplitude / this.amplitudeLimit) < 0.20) {
       return;
     }
 
     //console.log("FundementalFreq:" + currentFreq.toFixed(2) + " amp:" + amplitude.toFixed(2) + " note:" + note);
-    //console.log('ratio:' + (amplitude / maxAmplitude)) 
+    //console.log('ratio:' + (amplitude / amplitudeLimit)) 
 
     // Reflect values to view
     if (document.getElementById("note") != null) {
@@ -61,29 +68,30 @@ export class HomePage {
 
     if (document.getElementById("circle") != null) {
       var circle = document.getElementById("circle");
-      let offset = this.previousFrequency - frequency;
 
-/*
-      this.circleOffsetArray.push(offset);
-      var smoothOffset = this.circleOffsetArray.reduce((a, b) => a + b, 0) / this.circleOffsetArray.length;
-      // console.log(this.circleOffsetArray);
-      // console.log('offset:' + offset);
-      // console.log('smooth-offset:' + smoothOffset)
+      this.frequencyCache.push(frequency.toFixed(2));
+      var offset = this.averageOffset();
 
-      var circlePos = (this.circleCenterPos);
-      var offsetAsPercent = 50 + smoothOffset;
+      if(Math.abs(offset) > 50){
+        offset = 0;
+      }
+      var offsetAsPercent = 50 + offset;
 
       circle.style.left = 'calc(' + offsetAsPercent + '% - 1em)';
-      if (Math.abs(offsetAsPercent - 50) < 1) {
+      if (Math.abs(offsetAsPercent - 50) < 0.5) {
         circle.style.backgroundColor = 'black';
       } else {
         circle.style.backgroundColor = 'rgb(124, 12, 12)';
       }
       // console.log('center:' + offsetAsPercent);
       // console.log('circlePos' + circlePos);
-
-      */
     }
-    // this.prevFundemantalFreq = this.currentFreq;
+  }
+  averageOffset = function () {
+    let offsetCache = Object.assign([], this.frequencyCache);
+    offsetCache = offsetCache.map( f => f - this.noteTools.getFundamentalFrequency(f).toFixed(2));
+    let avg = (offsetCache.reduce((a,b) => a + b,0) / offsetCache.length);
+    console.log(avg);
+    return avg;
   }
 }
