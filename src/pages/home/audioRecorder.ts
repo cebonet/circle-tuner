@@ -4,6 +4,8 @@ import { AndroidPermissions } from '@ionic-native/android-permissions';
 
 
 export class AudioRecorder {
+    readonly FREQUENCY_MAX_LIMIT = 2200;
+    readonly FREQUENCY_MIN_LIMIT = 100;
     autoCorrelation: any;
     frequencyTools: any;
     audioContext: any;
@@ -39,8 +41,13 @@ export class AudioRecorder {
                 this.frequency = this.frequencyTools.getFrequency(this.autoCorrelatedbuffer, this.sampleRate);
                 this.amplitude = this.frequencyTools.getAmplitude(this.buffer);
 
-                if (this.frequency != undefined && isFinite(this.frequency) 
-                    && this.note != 'N/A') {
+
+                // Call only if data is valid
+                if (this.frequency != undefined 
+                    && isFinite(this.frequency) 
+                    && this.note != 'N/A'
+                    && this.frequency > this.FREQUENCY_MIN_LIMIT
+                    && this.frequency < this.FREQUENCY_MAX_LIMIT){
                     // Callback to function in paramater
                     onSuccessCaller(this.frequency, this.amplitude);
                 }
