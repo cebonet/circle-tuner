@@ -13,6 +13,10 @@ export class HomePage {
   circleCenterPos: number;
   frequencyCache: Array<number> = new Array(50);;
   amplitudeLimit: number = 0.2;
+  tuned : boolean = true;
+  almostTuned :boolean = false;
+  tooLoose : boolean = false;
+  tooTight : boolean = false;
 
   constructor(public navCtrl: NavController, androidPermissions: AndroidPermissions,
     private audioRecorder: AudioRecorder, private noteTools: Note) {
@@ -36,13 +40,8 @@ export class HomePage {
   // Use audio data here to modify view
   processAudioData(frequency, amplitude) {
     this.frequencyCache.push(frequency.toFixed(2));
+    var offset = this.averageOffset(); //offset from fundemental frequency
 
-    /*
-        this.MIDI = this.noteTools.getMIDI(this.frequency);
-        this.previousFundamental = this.noteTools.getMIDIToFrequency(this.MIDI - 1);
-        this.fundamental = this.noteTools.getMIDIToFrequency(this.MIDI);
-        this.nextFundamental = this.noteTools.getMIDIToFrequency(this.MIDI + 1);
-    */
     if (amplitude > this.amplitudeLimit) {
       this.amplitudeLimit = amplitude;
     }
@@ -52,10 +51,16 @@ export class HomePage {
       return;
     }
 
-    //console.log("FundementalFreq:" + currentFreq.toFixed(2) + " amp:" + amplitude.toFixed(2) + " note:" + note);
-    //console.log('ratio:' + (amplitude / amplitudeLimit)) 
+    if (Math.abs(offset) < 0.15) {
+      this.tuned = true;  
+    }else if(Math.abs(offset) > 0.25 && Math.abs(offset) < 3.50 ){
+      this.almostTuned = true;
+    }else {
+      this.tuned = false;
+      this.almostTuned = false;
+    }
 
-    // Reflect values to view
+
     if (document.getElementById("note") != null) {
       document.getElementById("note").textContent = this.noteTools.getMIDIasNote(frequency, true);;
     }
@@ -70,30 +75,41 @@ export class HomePage {
 
     if (document.getElementById("circle") != null) {
       var circle = document.getElementById("circle");
-      var offset = this.averageOffset();
-
-      if(Math.abs(offset) > 50){
-        offset = 0;
-      }
-      moveCircle(offset, circle);
+      this.moveCircle(offset, circle);
     }
+
+    this.updateTuneComment(offset);
+
+
   }
-  averageOffset = function () {
+  
+  private averageOffset = function () {
     let offsetCache = Object.assign([], this.frequencyCache);
     offsetCache = offsetCache.map( f => f - this.noteTools.getFundamentalFrequency(f).toFixed(2));
     let avg = (offsetCache.reduce((a,b) => a + b,0) / offsetCache.length);
     return avg;
   }
-}
 
-function moveCircle(offset: number, circle: HTMLElement) {
-  var offsetAsPercent = 50 + offset;
-  circle.style.left = 'calc(' + offsetAsPercent + '% - 2em)';
-  if (Math.abs(offset) < 0.25) {
-    circle.style.backgroundColor = 'rgb(39, 174, 96)';
-  }else if(Math.abs(offset) > 0.25 && Math.abs(offset) < 3.50 ){
-    circle.style.backgroundColor = 'rgb(230, 126, 34)';
-  }else {
-    circle.style.backgroundColor = 'rgb(192, 57, 43)';
+  private updateTuneComment(offset: number) {
+    var assist = document.getElementById("assist");
+    if (this.tuned){
+      assist.textContent = 'Tuned!';
+    }
+    else if (offset < 0) {
+      assist.textContent = 'Too loose!';
+    }else{
+      assist.textContent = 'Too tight!';
+    }
+  }
+
+  private moveCircle = function(offset: number, circle: HTMLElement) {
+    circle.style.left = 'calc(' + (50 + offset).toFixed(3) + '%)';
+    if (this.tuned) {
+      circle.style.backgroundColor = 'rgb(39, 174, 96)';
+    }else {
+      circle.style.backgroundColor = 'rgb(192, 57, 43)';
+    }
   }
 }
+
+

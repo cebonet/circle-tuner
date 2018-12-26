@@ -35,3 +35,8 @@ $breakpoints: (phone: 320px, tablet: 768px, desktop: 1024px);
     src: url("../assets/fonts/Source_Sans_Pro/SourceSansPro-Bold.ttf") format("truetype");
 }
 
+@font-face {
+    font-family: "SSP-Light";
+    src: url("../assets/fonts/Source_Sans_Pro/SourceSansPro-Light.ttf") format("truetype");
+}
+
