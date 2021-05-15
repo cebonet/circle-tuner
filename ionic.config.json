@@ -1,8 +1,8 @@
 {
-  "name": "TuneR",
+  "name": "tension",
   "integrations": {
+    "capacitor": {},
     "cordova": {}
   },
-  "type": "ionic-angular",
-  "pro_id": "3ec7243f"
+  "type": "angular"
 }

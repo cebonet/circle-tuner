@@ -1,0 +1,101 @@
+.title {
+  font-family: "Satisfy";
+  font-size: 5em;
+  text-align: center;
+  width: 100%;
+}
+
+#saz{
+    position:fixed;
+    bottom:-10px;
+    left:50%;
+    margin-left: -100px
+}
+
+#note1 {
+  position: absolute;
+  font-family: "Satisfy";
+  font-size: 3em;
+  top: 40%;
+  left: 75%;
+}
+#note2 {
+  position: absolute;
+  font-family: "Satisfy";
+  font-size: 3em;
+  top: 53%;
+  left: 75%;
+}
+#note3 {
+  position: absolute;
+  font-family: "Satisfy";
+  font-size: 3em;
+  top: 67%;
+  left: 75%;
+}
+#note4 {
+  position: absolute;
+  font-family: "Satisfy";
+  font-size: 3em;
+  top: 80%;
+  left: 75%;
+}
+
+#note5 {
+  position: absolute;
+  font-family: "Satisfy";
+  font-size: 3em;
+  top: 75%;
+  left: 13%;
+}
+#note6 {
+  position: absolute;
+  font-family: "Satisfy";
+  font-size: 3em;
+  top: 60%;
+  left: 13%;
+}
+#note7 {
+  position: absolute;
+  font-family: "Satisfy";
+  font-size: 3em;
+  top: 45%;
+  left: 13%;
+}
+
+#frequency {
+  //font-family: "Dosis-Medium" ;
+  text-align: center;
+  font-family: "SSP-Medium";
+  white-space: nowrap;
+  font-size: 2em;
+  width: 100%;
+}
+
+#octave {
+  //font-family: "Dosis-Medium" ;
+  text-align: center;
+  font-family: "SSP-Light";
+  white-space: nowrap;
+  padding-bottom: 0em;
+  font-size: 1em;
+  width: 100%;
+}
+
+#circle {
+  width: 2em;
+  height: 2em;
+  margin-top: -2em;
+  margin-left: -2em;
+  position: absolute;
+  left: calc(50%);
+  content: "";
+  background-color: rgb(39, 174, 96);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+#volume {
+  font-size: 3em;
+  text-align: center;
+}
