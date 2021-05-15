@@ -1,24 +1,83 @@
-<ion-content padding align-items-center>
-  <ion-row>
-    <h1 class="title">Kisa Sap</h1>
-    <div id="circle"></div>
-  </ion-row>
-  <ion-row>
-      <div id="frequency">440Hz</div>
-  </ion-row>
+<ion-app>
+  <ion-content padding align-items-center>
+    <ion-grid
+      style="
+        padding: 0;
+        background-color: white;
+        height: 100%;
+        display: flex;
+        flex-flow: column;
+      "
+    >
+      <ion-row>
+        <h1 class="title">Kisa Sap</h1>
+        <div id="circle"></div>
+      </ion-row>
+      <ion-row>
+        <div id="frequency">440Hz</div>
+      </ion-row>
 
-  <ion-row>
-    <div id="octave">Octave: 4</div>
-  </ion-row>
+      <ion-row>
+        <div id="octave">Octave: 4</div>
+      </ion-row>
 
-  <ion-row>
-    <div id="note1">Fa</div>
-    <div id="note2">Fa</div>
-    <div id="note3">Fa</div>
-    <div id="note4">Fa</div>
-    <div id="note5">Fa</div>
-    <div id="note6">Fa</div>
-    <div id="note7">Fa</div>
-    <div id="saz"><img src="../assets/imgs/sazsap.svg" /></div>
-  </ion-row>
-</ion-content>
+      <ion-row style="flex-grow: 1">
+        <ion-col text-center style="background-color: yellow">
+          <p>metrics area</p>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col style="padding-bottom: 0; flex-grow: 1"> </ion-col>
+        <ion-col style="padding: 0" size="2">
+          <ion-row style="height: 20%"></ion-row>
+          <ion-row style="height: 20%">
+            <ion-col text-center style="background-color: yellow">
+              <p>Sol</p>
+            </ion-col></ion-row
+          >
+          <ion-row style="height: 20%">
+            <ion-col text-center style="background-color: yellow">
+              <p>So</p>
+            </ion-col></ion-row
+          >
+          <ion-row style="height: 20%">
+            <ion-col text-center style="background-color: yellow">
+              <p>Si</p>
+            </ion-col></ion-row
+          >
+        </ion-col>
+        <ion-col style="padding-bottom: 0" size="4" text-center>
+          <img src="../assets/imgs/sazsap.svg" />
+        </ion-col>
+        <ion-col style="padding-bottom: 0" size="2">
+          <ion-row style="height: 10%"> </ion-row>
+          <ion-row style="height: 20%">
+            <ion-col text-center style="background-color: yellow">
+              <p>Mi</p>
+            </ion-col></ion-row
+          >
+          <ion-row style="height: 20%">
+            <ion-col text-center style="background-color: yellow">
+              <p>Mi</p>
+            </ion-col>
+          </ion-row>
+          <ion-row style="height: 15%">
+            <ion-col text-center style="background-color: yellow">
+              <p>Mi</p>
+            </ion-col></ion-row
+          >
+          <ion-row style="height: 20%">
+            <ion-col text-center style="background-color: yellow">
+              <p>Sol</p>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+        <ion-col style="padding-bottom: 0; flex-grow: 1"> </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+</ion-app>
+
+<!--    <div id="note1">Fa</div>
+-->
