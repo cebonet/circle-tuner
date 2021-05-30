@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AudioRecorder } from './audioRecorder';
-import { AndroidPermissions } from '@ionic-native/android-permissions';
 import { Note } from "./note";
+import { instruments } from "src/assets/config/arrangements.json";
 
 @Component({
   selector: 'app-home',
@@ -12,27 +12,27 @@ export class HomePage {
   circleCenterPos: number;
   frequencyCache: Array<number> = new Array(50);;
   amplitudeLimit: number = 0.1;
-  tuned : boolean = true;
-  almostTuned :boolean = false;
-  tooLoose : boolean = false;
-  tooTight : boolean = false;
+  tuned: boolean = true;
+  almostTuned: boolean = false;
+  tooLoose: boolean = false;
+  tooTight: boolean = false;
 
 
-  constructor(private audioRecorder: AudioRecorder, private noteTools: Note) {
+  constructor(private audioRecorder: AudioRecorder, private noteTools: Note,) {
 
-      // Setup frequency cache with limit 5
-      this.frequencyCache.push = function () {
-        if (this.length >= 50) {
-          this.shift();
-        }
-        return Array.prototype.push.apply(this, arguments);
+    // Setup frequency cache with limit 5
+    this.frequencyCache.push = function () {
+      if (this.length >= 50) {
+        this.shift();
       }
+      return Array.prototype.push.apply(this, arguments);
+    }
   }
+
   ngOnInit() {
     this.audioRecorder.startRecording(this.processAudioData.bind(this));
-    var rect = document.getElementById("circle").getBoundingClientRect();
-    this.circleCenterPos = rect.left;
-    console.log('initial circle pos : ' + this.circleCenterPos);
+    console.log(instruments);
+    console.log("loool");
   }
 
   // Use audio data here to modify view
@@ -50,10 +50,10 @@ export class HomePage {
     }
 
     if (Math.abs(offset) < 0.15) {
-      this.tuned = true;  
-    }else if(Math.abs(offset) > 0.25 && Math.abs(offset) < 3.50 ){
+      this.tuned = true;
+    } else if (Math.abs(offset) > 0.25 && Math.abs(offset) < 3.50) {
       this.almostTuned = true;
-    }else {
+    } else {
       this.tuned = false;
       this.almostTuned = false;
     }
@@ -80,31 +80,31 @@ export class HomePage {
 
 
   }
-  
+
   private averageOffset = function () {
     let offsetCache = Object.assign([], this.frequencyCache);
-    offsetCache = offsetCache.map( f => f - this.noteTools.getFundamentalFrequency(f).toFixed(2));
-    let avg = (offsetCache.reduce((a,b) => a + b,0) / offsetCache.length);
+    offsetCache = offsetCache.map(f => f - this.noteTools.getFundamentalFrequency(f).toFixed(2));
+    let avg = (offsetCache.reduce((a, b) => a + b, 0) / offsetCache.length);
     return avg;
   }
 
   private updateTuneComment(offset: number) {
     var assist = document.getElementById("assist");
-    if (this.tuned){
+    if (this.tuned) {
       assist.textContent = 'Tuned!';
     }
     else if (offset < 0) {
       assist.textContent = 'Too loose!';
-    }else{
+    } else {
       assist.textContent = 'Too tight!';
     }
   }
 
-  private moveCircle = function(offset: number, circle: HTMLElement) {
+  private moveCircle = function (offset: number, circle: HTMLElement) {
     circle.style.left = 'calc(' + (50 + offset).toFixed(3) + '%)';
     if (this.tuned) {
       circle.style.backgroundColor = 'rgb(39, 174, 96)';
-    }else {
+    } else {
       circle.style.backgroundColor = 'rgb(192, 57, 43)';
     }
   }

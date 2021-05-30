@@ -1,0 +1,39 @@
+{
+    "instruments": [
+        {
+            "name" : "baglama",
+            "variation": "short-necked",
+            "order": "B",
+            "groups" : {
+                "bottom": {
+                    "1" : { 
+                        "note" : "E"
+                    },
+                    "2" : { 
+                        "note" : "E"
+                    },
+                    "3" : { 
+                        "note" : "E"
+                    }
+                },
+                "middle" : {
+                    "1" : { 
+                        "note" : "A"
+                    },
+                    "2" : { 
+                        "note" : "A"
+                    }
+                },
+                "top" : {
+                    "1" : { 
+                        "note" : "B"
+                    },
+                    "2" : { 
+                        "note" : "B"
+                    }
+                }
+            }
+        }
+    ]
+}
+
