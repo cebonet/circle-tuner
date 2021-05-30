@@ -11,7 +11,7 @@ import { instruments } from "src/assets/config/arrangements.json";
 export class HomePage {
   circleCenterPos: number;
   frequencyCache: Array<number> = new Array(50);;
-  amplitudeLimit: number = 0.1;
+  amplitudeLimit: number = 0.02;
   tuned: boolean = true;
   almostTuned: boolean = false;
   tooLoose: boolean = false;
@@ -27,35 +27,31 @@ export class HomePage {
       }
       return Array.prototype.push.apply(this, arguments);
     }
+
+    // Setup screen with target notes
+    
+
   }
 
   ngOnInit() {
     this.audioRecorder.startRecording(this.processAudioData.bind(this));
-    console.log(instruments);
-    console.log("loool");
   }
 
   // Use audio data here to modify view
   processAudioData(frequency, amplitude) {
     this.frequencyCache.push(frequency.toFixed(2));
     var offset = this.averageOffset(); //offset from fundemental frequency
-
-    if (amplitude > this.amplitudeLimit) {
-      this.amplitudeLimit = amplitude;
-    }
+    let diffFromFundemental = Math.abs(this.noteTools.getFundamentalFrequency(frequency) - frequency) 
 
     // Skip if amplitude too low
-    if ((amplitude / this.amplitudeLimit) < 0.20) {
+    if (amplitude < this.amplitudeLimit) {
       return;
     }
 
-    if (Math.abs(offset) < 0.15) {
+    if (diffFromFundemental < 2) {
       this.tuned = true;
-    } else if (Math.abs(offset) > 0.25 && Math.abs(offset) < 3.50) {
-      this.almostTuned = true;
     } else {
       this.tuned = false;
-      this.almostTuned = false;
     }
 
 
@@ -73,7 +69,7 @@ export class HomePage {
 
     if (document.getElementById("circle") != null) {
       var circle = document.getElementById("circle");
-      this.moveCircle(offset, circle);
+      this.moveCircle(frequency, circle);
     }
 
     //this.updateTuneComment(offset);
@@ -88,20 +84,24 @@ export class HomePage {
     return avg;
   }
 
-  private updateTuneComment(offset: number) {
-    var assist = document.getElementById("assist");
-    if (this.tuned) {
-      assist.textContent = 'Tuned!';
-    }
-    else if (offset < 0) {
-      assist.textContent = 'Too loose!';
-    } else {
-      assist.textContent = 'Too tight!';
-    }
-  }
 
-  private moveCircle = function (offset: number, circle: HTMLElement) {
-    circle.style.left = 'calc(' + (50 + offset).toFixed(3) + '%)';
+
+  public moveCircle = function (frequency: number, circle: HTMLElement) {
+    let position = -1*(this.noteTools.getFundamentalFrequency(frequency) - frequency);
+    let newPosition = (50 + position);
+
+    if(newPosition < 20 || newPosition > 80){
+      return;
+    }
+
+    console.log('new position:' + newPosition);
+    circle.style.left = 'calc(' + newPosition.toFixed(3) + '%)';
+    //circle.style.transform = 'translateX(' + (50 + position).toFixed(3)+'px)';
+
+    let scale = 1 + (Math.abs(position))/15 ;
+    //circle.style.transform = 'scale(' + scale + ') ';
+
+
     if (this.tuned) {
       circle.style.backgroundColor = 'rgb(39, 174, 96)';
     } else {

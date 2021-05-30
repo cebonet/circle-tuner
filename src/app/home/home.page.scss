@@ -5,26 +5,28 @@
   width: 100%;
 }
 
-#saz{
-    position:fixed;
-    bottom:-10px;
-    left:50%;
-    margin-left: -100px
-}
 
 .centered-col {
   text-align: center;
   }
   
-  
+.string-group-one {
+  background-color: white;
+}
+
+.string-group-two {
+  background-color: white;
+}
+
+.string-group-three {
+  background-color: white;
+}
 
 #note1 {
-  position: absolute;
   font-family: "Satisfy";
-  font-size: 3em;
-  top: 40%;
-  left: 75%;
+  font-size: 1rem;  
 }
+
 #note2 {
   position: absolute;
   font-family: "Satisfy";
@@ -88,20 +90,74 @@
   width: 100%;
 }
 
-#circle {
-  width: 2em;
-  height: 2em;
-  margin-top: -2em;
-  margin-left: -2em;
+#outer-line{
+  padding: 3rem 8rem;
+  border: 2px solid #b1b1b1;
+  border-top: white;
+  border-bottom: white;
+  background: #ffffff;
   position: absolute;
-  left: calc(50%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+#middle-line{
+  padding: 2rem 4rem;
+  border: 2px solid #b4b4b4;
+  border-top: white;
+  border-bottom: white;
+  background: #ffffff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#center-line{
+  padding: 1rem 1rem;
+  border: 2px solid #8f8f8f;
+  border-top: white;
+  border-bottom: white;
+  background: #ffffff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#center-line-number{
+  font-size: 0.7rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-2rem, -2rem);
+
+}
+
+#circle {
+  width: 1.5em;
+  height: 1.5em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   content: "";
   background-color: rgb(39, 174, 96);
   border-radius: 50%;
   z-index: 1;
+  box-shadow: 0em 0em 15px 8px rgba(0, 0, 0, 0.125);
+  transition: all 100ms ease-in-out;
 }
 
 #volume {
   font-size: 3em;
   text-align: center;
+}
+
+.saz{
+  max-height: 450px;
+  min-height: 300px;
+  min-width: 50px;
 }
