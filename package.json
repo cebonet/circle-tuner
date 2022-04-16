@@ -1,8 +1,9 @@
 {
-  "name": "tension",
+  "name": "CircleTuner",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Cebrail Erdogan",
+  "homepage": "https://cebrailerdogan.com",
+  "description": "A simple tuner for your instruments",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -39,7 +40,7 @@
     "@angular/compiler-cli": "~11.2.0",
     "@angular/language-service": "~11.2.0",
     "@capacitor/cli": "2.4.7",
-    "@ionic/angular-toolkit": "^3.1.1",
+    "@ionic/angular-toolkit": "^6.1.0",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "^12.11.1",
@@ -51,7 +52,7 @@
     "eslint-plugin-prefer-arrow": "1.2.2",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
-    "karma": "~5.2.0",
+    "karma": "^6.3.18",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.0.3",
     "karma-coverage-istanbul-reporter": "~3.0.2",
@@ -60,6 +61,6 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "typescript": "~4.0.2"
-  },
-  "description": "An Ionic project"
+  }
 }
+

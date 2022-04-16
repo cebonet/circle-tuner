@@ -11,8 +11,9 @@ import { instruments } from "src/assets/config/arrangements.json";
 export class HomePage {
   circleCenterPos: number;
   frequencyCache: Array<number> = new Array(50);;
-  amplitudeLimit: number = 0.02;
+  amplitudeLimit: number = 0.01;
   tuned: boolean = true;
+  perfectlyTuned: boolean = true;
   almostTuned: boolean = false;
   tooLoose: boolean = false;
   tooTight: boolean = false;
@@ -48,33 +49,60 @@ export class HomePage {
       return;
     }
 
-    if (diffFromFundemental < 2) {
+
+    if (diffFromFundemental < 0.1) {
+      this.perfectlyTuned = true;
       this.tuned = true;
-    } else {
+    }
+    else if (diffFromFundemental < 2){
+      this.tuned = true;
+    }
+    else {
       this.tuned = false;
+      this.perfectlyTuned = false;
     }
 
+    var note = this.noteTools.getMIDIasNote(frequency, true); 
+    var frequency = frequency.toFixed(1);
+    var octave = this.noteTools.getOctave(frequency);
+    var tuneComment;
 
     if (document.getElementById("note") != null) {
-      document.getElementById("note").textContent = this.noteTools.getMIDIasNote(frequency, true);;
+      document.getElementById("note").textContent = note;
+    }
+    
+    if (document.getElementById("octave") != null) {
+      document.getElementById("octave").textContent = "Octave: " + octave.toString();
     }
 
     if (document.getElementById("frequency") != null) {
-      document.getElementById("frequency").textContent = frequency.toFixed(1) + "Hz";
-    }
-
-    if (document.getElementById("octave") != null) {
-      document.getElementById("octave").textContent = 'Octave: ' + this.noteTools.getOctave(frequency);
+      document.getElementById("frequency").textContent = frequency + "Hz";
     }
 
     if (document.getElementById("circle") != null) {
       var circle = document.getElementById("circle");
-      this.moveCircle(frequency, circle);
+      var currentFundementalFrequency = this.noteTools.getFundamentalFrequency(frequency);
+      var previousFundementalFrequency = this.noteTools.getPreviousFundementalFrequency(frequency);
+      var nextFundementalFrequency = this.noteTools.getNextFundementalFrequency(frequency);
+      this.moveCircle(frequency, currentFundementalFrequency, previousFundementalFrequency, nextFundementalFrequency, circle);
+      this.colorCircle(circle);
+      if (document.getElementById("tuneComment") != null) {
+	if(this.perfectlyTuned){
+		tuneComment = "there we go"
+	}else if(this.tuned){
+		tuneComment = "almost there"
+	}
+	else{
+		if(frequency > currentFundementalFrequency){
+			tuneComment = "loosen up a bit"
+		}else{
+			tuneComment = "tighten up a bit"
+		}
+	}
+      	document.getElementById("tuneComment").textContent = tuneComment;
+      }
     }
-
-    //this.updateTuneComment(offset);
-
-
+    
   }
 
   private averageOffset = function () {
@@ -85,28 +113,33 @@ export class HomePage {
   }
 
 
+  public colorCircle = function (circle: HTMLElement) {
+    if(this.perfectlyTuned){
+      circle.style.backgroundColor = 'black';
+      circle.style.boxShadow = '0em 0em 20px 20px rgba(0, 0, 0, 0.325)';
+    }
+    else if (this.tuned) {
+      circle.style.backgroundColor = 'black';
+      circle.style.boxShadow = '0em 0em 5px 5px rgba(0, 0, 0, 0.325)';
+    } else {
+      circle.style.backgroundColor = 'rgb(192, 57, 43)';
+      circle.style.boxShadow = '0em 0em 10px 8px rgba(255, 0, 0, 0.125)';
+    }
+  }
 
-  public moveCircle = function (frequency: number, circle: HTMLElement) {
+  public moveCircle = function (frequency: number, currentFundementalFrequency, previousFundementalFrequency, nextFundementalFrequency, circle: HTMLElement) {
+    let center = 50 
     let position = -1*(this.noteTools.getFundamentalFrequency(frequency) - frequency);
-    let newPosition = (50 + position);
+    let newPosition = (center + position);
 
     if(newPosition < 20 || newPosition > 80){
       return;
     }
 
-    console.log('new position:' + newPosition);
     circle.style.left = 'calc(' + newPosition.toFixed(3) + '%)';
-    //circle.style.transform = 'translateX(' + (50 + position).toFixed(3)+'px)';
 
-    let scale = 1 + (Math.abs(position))/15 ;
-    //circle.style.transform = 'scale(' + scale + ') ';
-
-
-    if (this.tuned) {
-      circle.style.backgroundColor = 'rgb(39, 174, 96)';
-    } else {
-      circle.style.backgroundColor = 'rgb(192, 57, 43)';
-    }
+    console.log('current fun=' + currentFundementalFrequency, '  prev fun= ' + previousFundementalFrequency + '  next fun= ' + nextFundementalFrequency)
+    console.log('new position:' + newPosition);
   }
 
 }

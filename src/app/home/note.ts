@@ -51,6 +51,13 @@ export class Note {
        return this.getMIDIToFrequency(this.getMIDI(f) + 1) - this.getFundamentalFrequency(f);
     }
 
+    getNextFundementalFrequency = function(f){
+       return this.getMIDIToFrequency(this.getMIDI(f) + 1);
+    }
+    
+    getPreviousFundementalFrequency = function(f){
+       return this.getMIDIToFrequency(this.getMIDI(f) - 1);
+    }
 
     getOutOfTuneDifference = function(f){
         let MIDI = this.getMIDI(f);

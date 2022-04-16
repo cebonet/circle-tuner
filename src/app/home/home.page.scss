@@ -3,152 +3,67 @@
   font-size: 5em;
   text-align: center;
   width: 100%;
+  color: black;
+  background-color: pink;
 }
-
-
 .centered-col {
   text-align: center;
-  }
-  
-.string-group-one {
-  background-color: white;
 }
 
-.string-group-two {
-  background-color: white;
-}
+#note{
+  text-align: center;
+  font-family: "Satisfy";
+  font-size: 7em;
+  white-space: nowrap;
+  color: black;
+  width: 100%;
+  #background-color: pink;
+  display:inline-block;   
 
-.string-group-three {
-  background-color: white;
-}
-
-#note1 {
-  font-family: "Satisfy";
-  font-size: 1rem;  
-}
-
-#note2 {
-  position: absolute;
-  font-family: "Satisfy";
-  font-size: 3em;
-  top: 53%;
-  left: 75%;
-}
-#note3 {
-  position: absolute;
-  font-family: "Satisfy";
-  font-size: 3em;
-  top: 67%;
-  left: 75%;
-}
-#note4 {
-  position: absolute;
-  font-family: "Satisfy";
-  font-size: 3em;
-  top: 80%;
-  left: 75%;
-}
-
-#note5 {
-  position: absolute;
-  font-family: "Satisfy";
-  font-size: 3em;
-  top: 75%;
-  left: 13%;
-}
-#note6 {
-  position: absolute;
-  font-family: "Satisfy";
-  font-size: 3em;
-  top: 60%;
-  left: 13%;
-}
-#note7 {
-  position: absolute;
-  font-family: "Satisfy";
-  font-size: 3em;
-  top: 45%;
-  left: 13%;
 }
 
 #frequency {
-  //font-family: "Dosis-Medium" ;
   text-align: center;
-  font-family: "SSP-Medium";
+  font-family: "SourceSansPro";
   white-space: nowrap;
+  color: black;
   font-size: 2em;
   width: 100%;
+  #background-color: red
 }
 
+
 #octave {
-  //font-family: "Dosis-Medium" ;
+  color: black;
   text-align: center;
-  font-family: "SSP-Light";
-  white-space: nowrap;
+  font-family: "SourceSansPro";
   padding-bottom: 0em;
   font-size: 1em;
   width: 100%;
 }
 
-#outer-line{
-  padding: 3rem 8rem;
-  border: 2px solid #b1b1b1;
-  border-top: white;
-  border-bottom: white;
-  background: #ffffff;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-
-#middle-line{
-  padding: 2rem 4rem;
-  border: 2px solid #b4b4b4;
-  border-top: white;
-  border-bottom: white;
-  background: #ffffff;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-#center-line{
-  padding: 1rem 1rem;
-  border: 2px solid #8f8f8f;
-  border-top: white;
-  border-bottom: white;
-  background: #ffffff;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-#center-line-number{
-  font-size: 0.7rem;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-2rem, -2rem);
-
-}
-
 #circle {
-  width: 1.5em;
-  height: 1.5em;
+  width: 5em;
+  height: 5em;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   content: "";
-  background-color: rgb(39, 174, 96);
+  background-color: black;
   border-radius: 50%;
   z-index: 1;
-  box-shadow: 0em 0em 15px 8px rgba(0, 0, 0, 0.125);
-  transition: all 100ms ease-in-out;
+  box-shadow: 0em 0em 20px 20px rgba(0, 0, 0, 0.325);
+  transition: all 150ms ease-in-out;
+}
+
+#tuneComment{
+  color: black;
+  text-align: center;
+  font-family: "SourceSansPro";
+  padding-bottom: 0em;
+  font-size: 1em;
+  width: 100%;
 }
 
 #volume {
