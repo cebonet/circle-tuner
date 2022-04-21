@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 135.46667 135.46667"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04, custom)"
+   sodipodi:docname="icon.svg"
+   inkscape:export-filename="/home/cebrail/Development/CircleTuner/icon.png"
+   inkscape:export-xdpi="323.36841"
+   inkscape:export-ydpi="323.36841"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#999999"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.48189506"
+     inkscape:cx="-409.84027"
+     inkscape:cy="499.07131"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     inkscape:snap-text-baseline="true"
+     units="px" />
+  <defs
+     id="defs2">
+    <rect
+       x="100.28966"
+       y="199.97748"
+       width="210.8278"
+       height="142.45866"
+       id="rect2965" />
+    <rect
+       x="150.85005"
+       y="207.87593"
+       width="210.83928"
+       height="155.98003"
+       id="rect7444" />
+    <rect
+       x="71.172012"
+       y="235.74977"
+       width="189.45959"
+       height="154.77061"
+       id="rect2986" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <circle
+       style="fill:#ff0000;fill-opacity:1;stroke-width:0.602598"
+       id="path157"
+       cx="-86.18306"
+       cy="147.71078"
+       transform="rotate(15)"
+       r="61.940376" />
+    <rect
+       style="fill:#ff0000;stroke-width:0.822095"
+       id="rect56115"
+       width="136.68372"
+       height="134.65912"
+       x="0.55281198"
+       y="-0.12944926" />
+    <ellipse
+       style="fill:#000000;fill-rule:evenodd;stroke-width:0.517287"
+       id="path31"
+       cx="68.492577"
+       cy="69.462212"
+       rx="53.971664"
+       ry="53.971935" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.87839105,0,0,0.87839105,-1.6766502,1.9299286)"
+       id="text2984"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1;font-family:Satisfy;-inkscape-font-specification:Satisfy;white-space:pre;shape-inside:url(#rect2986);fill:#000000;fill-opacity:1;stroke:none"><tspan
+         x="71.171875"
+         y="260.1066"
+         id="tspan59643">
+</tspan><tspan
+         x="71.171875"
+         y="300.1066"
+         id="tspan59645">
+</tspan></text>
+    <text
+       xml:space="preserve"
+       transform="matrix(0.87839105,0,0,0.87839105,-1.6766502,1.9299286)"
+       id="text7442"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:1;font-family:Sans;-inkscape-font-specification:Sans;white-space:pre;shape-inside:url(#rect7444);fill:#000000;fill-opacity:1;stroke:none" />
+    <text
+       xml:space="preserve"
+       transform="matrix(0.87839105,0,0,0.87839105,-1.6766502,1.9299286)"
+       id="text2963"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:1;font-family:sans-serif;white-space:pre;shape-inside:url(#rect2965);fill:#000000;fill-opacity:1;stroke:none" />
+    <text
+       xml:space="preserve"
+       style="font-size:56.2169px;line-height:1;font-family:Satisfy;-inkscape-font-specification:Satisfy;fill:#800000;stroke-width:0.517287"
+       x="11.115397"
+       y="80.864403"
+       id="text3939"><tspan
+         sodipodi:role="line"
+         style="font-size:56.2169px;fill:#ffffff;stroke-width:0.517287"
+         x="11.115397"
+         y="80.864403"
+         id="tspan8821">Tuner</tspan></text>
+  </g>
+</svg>

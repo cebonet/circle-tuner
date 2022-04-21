@@ -88,15 +88,15 @@ export class HomePage {
       this.colorCircle(circle);
       if (document.getElementById("tuneComment") != null) {
 	if(this.perfectlyTuned){
-		tuneComment = "there we go"
+		tuneComment = "perfect!"
 	}else if(this.tuned){
 		tuneComment = "almost there"
 	}
 	else{
 		if(frequency > currentFundementalFrequency){
-			tuneComment = "loosen up a bit"
+			tuneComment = "tune down a bit"
 		}else{
-			tuneComment = "tighten up a bit"
+			tuneComment = "tune up a bit"
 		}
 	}
       	document.getElementById("tuneComment").textContent = tuneComment;

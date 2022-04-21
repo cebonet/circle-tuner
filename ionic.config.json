@@ -1,5 +1,5 @@
 {
-  "name": "tension",
+  "name": "CircleTuner",
   "integrations": {
     "capacitor": {},
     "cordova": {}
