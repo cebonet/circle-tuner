@@ -30,7 +30,7 @@ export class HomePage {
     }
 
     // Setup screen with target notes
-    
+
 
   }
 
@@ -42,7 +42,7 @@ export class HomePage {
   processAudioData(frequency, amplitude) {
     this.frequencyCache.push(frequency.toFixed(2));
     var offset = this.averageOffset(); //offset from fundemental frequency
-    let diffFromFundemental = Math.abs(this.noteTools.getFundamentalFrequency(frequency) - frequency) 
+    let diffFromFundemental = Math.abs(this.noteTools.getFundamentalFrequency(frequency) - frequency)
 
     // Skip if amplitude too low
     if (amplitude < this.amplitudeLimit) {
@@ -50,11 +50,11 @@ export class HomePage {
     }
 
 
-    if (diffFromFundemental < 0.1) {
+    if (diffFromFundemental < 0.08) {
       this.perfectlyTuned = true;
       this.tuned = true;
     }
-    else if (diffFromFundemental < 2){
+    else if (diffFromFundemental < 2) {
       this.tuned = true;
     }
     else {
@@ -62,15 +62,15 @@ export class HomePage {
       this.perfectlyTuned = false;
     }
 
-    var note = this.noteTools.getMIDIasNote(frequency, true); 
+    var note = this.noteTools.getMIDIasNote(frequency, true);
     var frequency = frequency.toFixed(1);
     var octave = this.noteTools.getOctave(frequency);
-    var tuneComment;
+    var tuneComment, tuneComment2;
 
     if (document.getElementById("note") != null) {
       document.getElementById("note").textContent = note;
     }
-    
+
     if (document.getElementById("octave") != null) {
       document.getElementById("octave").textContent = "Octave: " + octave.toString();
     }
@@ -87,22 +87,29 @@ export class HomePage {
       this.moveCircle(frequency, currentFundementalFrequency, previousFundementalFrequency, nextFundementalFrequency, circle);
       this.colorCircle(circle);
       if (document.getElementById("tuneComment") != null) {
-	if(this.perfectlyTuned){
-		tuneComment = "perfect!"
-	}else if(this.tuned){
-		tuneComment = "almost there"
-	}
-	else{
-		if(frequency > currentFundementalFrequency){
-			tuneComment = "tune down a bit"
-		}else{
-			tuneComment = "tune up a bit"
-		}
-	}
-      	document.getElementById("tuneComment").textContent = tuneComment;
+
+        if(!this.perfectlyTuned){
+          if (frequency > currentFundementalFrequency) {
+            tuneComment2 = "tune down a bit"
+          } else {
+            tuneComment2 = "tune up a bit"
+          }
+        }
+
+        if (this.perfectlyTuned) {
+          tuneComment = "perfect!"
+          tuneComment2 = ""
+        } else if (this.tuned) {
+          tuneComment = "almost there!"
+        }
+        else {
+          tuneComment = "Way off!"
+        }
+
+        document.getElementById("tuneComment").textContent = tuneComment + " " + tuneComment2;
       }
     }
-    
+
   }
 
   private averageOffset = function () {
@@ -114,25 +121,25 @@ export class HomePage {
 
 
   public colorCircle = function (circle: HTMLElement) {
-    if(this.perfectlyTuned){
-      circle.style.backgroundColor = 'black';
-      circle.style.boxShadow = '0em 0em 20px 20px rgba(0, 0, 0, 0.325)';
+    if (this.perfectlyTuned) {
+      circle.style.backgroundColor = 'rgba(62, 153, 48, 0.8)';
+      // circle.style.boxShadow = '0em 0em 20px 20px rgba(0, 0, 0, 0.325)';
     }
     else if (this.tuned) {
-      circle.style.backgroundColor = 'black';
-      circle.style.boxShadow = '0em 0em 5px 5px rgba(0, 0, 0, 0.325)';
+      circle.style.backgroundColor = 'rgba(197, 61, 61, 0.8)'; 
+      // circle.style.boxShadow = '0em 0em 5px 5px rgba(0, 0, 0, 0.325)';
     } else {
       circle.style.backgroundColor = 'rgb(192, 57, 43)';
-      circle.style.boxShadow = '0em 0em 10px 8px rgba(255, 0, 0, 0.125)';
+      // circle.style.boxShadow = '0em 0em 10px 8px rgba(255, 0, 0, 0.125)';
     }
   }
 
   public moveCircle = function (frequency: number, currentFundementalFrequency, previousFundementalFrequency, nextFundementalFrequency, circle: HTMLElement) {
-    let center = 50 
-    let position = -1*(this.noteTools.getFundamentalFrequency(frequency) - frequency);
+    let center = 50
+    let position = -1 * (this.noteTools.getFundamentalFrequency(frequency) - frequency);
     let newPosition = (center + position);
 
-    if(newPosition < 20 || newPosition > 80){
+    if (newPosition < 20 || newPosition > 80) {
       return;
     }
 
