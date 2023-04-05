@@ -5,66 +5,98 @@
   width: 100%;
   color: black;
   background-color: pink;
+  z-index: 2;
 }
 .centered-col {
   text-align: center;
+  z-index: 2;
 }
 
 #note{
   text-align: center;
   font-family: "Satisfy";
-  font-size: 7em;
+  font-size: 15em;
   white-space: nowrap;
-  color: black;
+  color: #ebebeb;
   width: 100%;
   #background-color: pink;
   display:inline-block;   
-
+  z-index: 2;    
 }
 
 #frequency {
   text-align: center;
-  font-family: "SourceSansPro";
+  font-family: "Satisfy";
   white-space: nowrap;
   color: black;
+  margin-top:-2em;
   font-size: 2em;
   width: 100%;
-  #background-color: red
+  #background-color: red;
+  z-index: 2;
 }
 
 
-#octave {
-  color: black;
+#diff {
+  color: #ebebeb;
   text-align: center;
-  font-family: "SourceSansPro";
+  font-family: "Satisfy";
   padding-bottom: 0em;
-  font-size: 1em;
+  margin-top:-1em;
+  font-size: 3em;
   width: 100%;
+  z-index: 2;
 }
 
 #circle {
-  width: 5em;
-  height: 5em;
+  width: 60vh;
+  height: 60vh;
   position: absolute;
   top: 50%;
   left: 50%;
+  transform: translate(-50%, -50%);
+  content: "";
+  background-color: rgb(192, 57, 43);
+  //background-color: black;
+  border-radius: 50%;
+  // border-color: black;
+  z-index: 2;
+  transition: all 150ms ease-in-out;
+}
+
+#circle2 {
+  width: 20vh;
+  height: 20vh;
+  position: absolute;
+  top: 60%;
+  left: 60%;
   transform: translate(-50%, -50%);
   content: "";
   background-color: rgba(62, 153, 48, 0.8);
   border-radius: 50%;
   // border-color: black;
   z-index: 1;
-  //box-shadow: 0em 0em 15px 15px rgba(0, 0, 0, 0.325);
   transition: all 150ms ease-in-out;
 }
 
-#tuneComment, tuneComment2 {
+#left-border {
+  background-color: black;
   color: black;
+  width:50px;
+}
+
+#left-border {
+  background-color: black;
+}
+
+#tuneComment, tuneComment2 {
+  color: #ebebeb;
   text-align: center;
   font-family: "SourceSansPro";
   padding-bottom: 0em;
   font-size: 1em;
   width: 100%;
+  z-index:2;
 }
 
 #tuneComment2 {
