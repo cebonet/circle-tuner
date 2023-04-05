@@ -1,9 +1,6 @@
 import { Component } from '@angular/core';
 import { AudioRecorder } from './audioRecorder';
 import { Note } from "./note";
-import { instruments } from "src/assets/config/arrangements.json";
-import { body } from 'node_modules.backup/ionicons/icons';
-import { main } from 'node_modules.backup/figures';
 
 @Component({
   selector: 'app-home',
@@ -75,7 +72,7 @@ export class HomePage {
 
 
     if (document.getElementById("diff") != null) {
-      document.getElementById("diff").textContent = "Diff: " + this.noteTools.getDistanceToCurrentPitch(frequency).toFixed(1).toString();
+      document.getElementById("diff").textContent = this.noteTools.getDistanceToCurrentPitch(frequency).toFixed(2).toString() + 'Hz';
     }
 
     if (document.getElementById("frequency") != null) {
@@ -95,6 +92,7 @@ export class HomePage {
       //this.moveCircle(frequency, currentFundementalFrequency, previousFundementalFrequency, nextFundementalFrequency, circle);
       this.sizeCircle(frequency, currentFundementalFrequency, previousFundementalFrequency, nextFundementalFrequency, circle);
       this.colorCircle(circle);
+
       if (document.getElementById("tuneComment") != null) {
 
         if (!this.perfectlyTuned) {
@@ -144,10 +142,6 @@ export class HomePage {
     let amplify_finetunning = 1.5;
     let amplify = 1;
 
-    if (Math.abs(this.noteTools.getFundamentalFrequency(frequency) - frequency) < 1) {
-      //amplify = amplify_finetunning;
-    }
-
     let position = (frequency - this.noteTools.getFundamentalFrequency(frequency)) * amplify;
     let newPosition = (center + position);
 
@@ -155,10 +149,7 @@ export class HomePage {
       return;
     }
 
-
-
     circle.style.left = 'calc(' + newPosition.toFixed(3) + '%)';
-
     //console.log('current fun=' + currentFundementalFrequency, '  prev fun= ' + previousFundementalFrequency + '  next fun= ' + nextFundementalFrequency)
     console.log('new position:' + newPosition);
   }
@@ -176,8 +167,6 @@ export class HomePage {
       circle.style.width = 'calc(' + diff.toFixed(3) + 'vh)';
       circle.style.height = 'calc(' + diff.toFixed(3) + 'vh)';
     }
-
-    console.log('diff:' + diff);
   }
 
 }

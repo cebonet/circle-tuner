@@ -1,6 +1,4 @@
 // https://en.wikipedia.org/wiki/MIDI_tuning_standard
-import * as midi_notes from 'src/assets/midi_table.json';
-
 const base_a4 = 440;
 const min_midi_num = 8;
 const max_midi_num = 127;
