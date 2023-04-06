@@ -6,7 +6,7 @@ Use this app for quick tuning of your guitar or other instruments. The app provi
 
 
 
-![HighlighedGraphic.png](/home/cebrail/Development/CircleTuner/src/assets/HighlighedGraphic.png)
+![HighlighedGraphic.png](./src/assets/HighlighedGraphic.png)
 
 ## Todo
 
