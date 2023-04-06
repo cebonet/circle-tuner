@@ -17,8 +17,7 @@ export class HomePage {
   tooLoose: boolean = false;
   tooTight: boolean = false;
 
-
-  constructor(private audioRecorder: AudioRecorder, private noteTools: Note,) {
+  constructor(private audioRecorder: AudioRecorder, private noteTools: Note) {
 
     // Setup frequency cache with limit 5
     this.frequencyCache.push = function() {
@@ -28,7 +27,6 @@ export class HomePage {
       return Array.prototype.push.apply(this, arguments);
     }
 
-    // Setup screen with target notes
 
 
   }
@@ -72,7 +70,12 @@ export class HomePage {
 
 
     if (document.getElementById("diff") != null) {
-      document.getElementById("diff").textContent = this.noteTools.getDistanceToCurrentPitch(frequency).toFixed(2).toString() + 'Hz';
+      var distanceToCurrentPitch = this.noteTools.getDistanceToCurrentPitch(frequency);
+      if (distanceToCurrentPitch > 0) {
+        document.getElementById("diff").textContent = '+' + distanceToCurrentPitch.toFixed(2).toString() + 'Hz';
+      } else {
+        document.getElementById("diff").textContent = this.noteTools.getDistanceToCurrentPitch(frequency).toFixed(2).toString() + 'Hz';
+      }
     }
 
     if (document.getElementById("frequency") != null) {
@@ -118,6 +121,7 @@ export class HomePage {
     }
 
   }
+
 
   private averageOffset = function() {
     let offsetCache = Object.assign([], this.frequencyCache);
