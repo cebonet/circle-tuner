@@ -6,6 +6,8 @@ Use this app for quick tuning of your guitar or other instruments. The app provi
 
 
 
+![HighlighedGraphic.png](./src/assets/HighlighedGraphic.png)
+
 ## Todo
 
 - [ ] Add tunning configuration for popular instruments
